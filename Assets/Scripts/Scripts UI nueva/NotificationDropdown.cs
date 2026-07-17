@@ -27,7 +27,7 @@ public class NotificationDropdown : MonoBehaviour
         if (content != null)
             content.SetActive(false);
     }
-
+    public bool IsOpen() {  return isOpen; }
     public void Toggle()
     {
         if (isAnimating)

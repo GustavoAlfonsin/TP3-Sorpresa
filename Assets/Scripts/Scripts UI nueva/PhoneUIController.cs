@@ -7,6 +7,7 @@ public class PhoneUIController : MonoBehaviour
     [Header("Referencia")]
     [SerializeField] private RectTransform phonePanel;
     [SerializeField] private PhoneScreenManager _screenManager;
+    [SerializeField] private NotificationDropdown _notificationDropdown;
 
     [Header("Posiciones")]
     [SerializeField] private Vector2 hiddenPosition;
@@ -88,6 +89,10 @@ public class PhoneUIController : MonoBehaviour
 
     private IEnumerator HidePhone()
     {
+        if (_notificationDropdown.IsOpen())
+        {
+            _notificationDropdown.Toggle();
+        }
         isAnimating = true;
 
         Vector2 startPosition = visiblePosition;
@@ -124,7 +129,9 @@ public class PhoneUIController : MonoBehaviour
         isAnimating = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        
         phonePanel.gameObject.SetActive(false);
+        
     }
     public bool IsOpen => isOpen;
 }
